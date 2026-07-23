@@ -1,0 +1,465 @@
+body {
+      margin: 0;
+      background: #fff;
+      color: #000;
+      font-family: arial, 'helvetica neue', helvetica, sans-serif;
+    }
+    .banner {
+      background: #000;
+      padding: 20px 0;
+    }
+    .banner img {
+      max-height: 150px;
+      padding: 20px 0px 20px 0px
+    }
+    .header-tab {
+  color: #fff;
+  text-decoration: none;
+  font-family: arial, 'helvetica neue', helvetica, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  gap: 20px;
+  padding: 45px 0px 0px 0px
+
+}
+.header-tab.active {
+  color: #bbd33b;
+}
+.header-tab:hover {
+  color: #bbd33b;
+}
+    .spacer { height: 20px; }
+    .tab-container {
+      display: flex;
+      background: #fff;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 15px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+    .tab-content.active-tab {
+      display: block;
+    }
+    #modulesContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px;
+    }
+    .psu-module {
+      position: relative;
+      background: #e6e7e8;
+      border: 0;
+      border-radius: 8px;
+      display: none;
+      width: 150px;
+      padding: 10px;
+      box-shadow: 0 0 7px #636466;
+      font-size: 12px;
+    }
+
+
+    .module-header {
+      display: flex;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #636466;
+      padding-bottom: 6px;
+    }
+    .channel-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #000;
+      width: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .module-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: #000;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+    .section-title {
+      font-size: 14px;
+      color: #000;
+      margin: 15px 0 4px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .readings {
+      background: #fff;
+      border: 1px solid #636466;
+      padding: 8px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+    }
+    .reading {
+      display: flex;
+      justify-content: flex-start;
+      font-size: 20px;
+      font-family: monospace;
+      margin: 4px 0;
+    }
+    .reading .value {
+      display: inline-block;
+      width: 72px;
+      text-align: right;
+      color: #000;
+    }
+    .reading .unit {
+      display: inline-block;
+      width: 24px;
+      text-align: left;
+      padding-left: 5px;
+      color: #bbd33b;
+    }
+    .settings label {
+      display: block;
+      margin: 3px 0;
+      color: #000;
+      font-size: 12px;
+    }
+    .settings label span {
+      display: inline-block;
+      width: 53px;
+      text-align: center;
+    }
+    .settings input {
+      width: 62px;
+      padding: 4px 4px 4px 6px;
+      border: 1px solid #000;
+      border-radius: 3px;
+      background: #fff;
+      color: #000;
+      font-family: arial, 'helvetica neue', helvetica, sans-serif;
+    }
+
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+
+    .hardware {
+      text-align: center;
+      font-size: 12px;
+      color: #000;
+      padding: 10px 0px 3px 0px;
+    }
+
+    .indicators {
+      display: flex;
+      gap: 5px;
+      margin: 10px 0;
+    }
+    .indicator {
+      flex: 1 1 50%;
+      max-width: 50%;
+      text-align: center;
+      padding: 5px;
+      font-size: 14px;
+      border-radius: 4px;
+      color: #000;
+    }
+    .indicator.green { background: #a3bf27; }
+    .indicator.red { background: #f00; }
+
+    .setting-label-indicator {
+      display: inline-block;
+      vertical-align:middle;
+      padding: 3px 0px;  /* controls spacing around the word */
+      border-radius: 4px;
+      font-size: 12px;
+      color: #000;
+      background: #a3bf27;
+  }
+
+  .setting-label-indicator.red {
+      background: #f00;
+  }
+
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+    .buttons button {
+      flex: 1 1 48%;
+      padding: 6px;
+      background: #636466;
+      color: #fff;
+      border: 1px solid #636466;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: arial, 'helvetica neue', helvetica, sans-serif;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+    .buttons button.full-width {
+      flex: 1 1 100%;
+    }
+    .buttons button:hover {
+      background: #fff;
+      color: #000;
+    }
+    .onoff-btn {
+      background-color: grey;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .buttons .onoff-btn:hover {
+  background-color: #636466 !important;
+  color: white !important;
+  cursor: default;
+}
+
+.onoff-btn.on {
+  background-color: #a3bf27;
+  color: white;
+}
+
+.onoff-btn.off {
+  background-color: #636466;
+  color: white;
+}
+
+
+    .command-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      padding: 15px;
+      margin: 20px;
+      background: #e6e7e8;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #636466;
+    }
+
+    .command-bar button {
+      padding: 8px 14px;
+      background: #636466;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      vertical-align: bottom;
+    }
+    
+    .command-bar button:hover {
+      background: #bbd33b;
+      color: #fff;
+    }
+
+
+.banner .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.header-tabs {
+  display: flex;
+  gap: 40px;
+  align-items: flex-end;
+  padding-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .banner .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-tabs {
+    justify-content: center;
+    padding-bottom: 12px;
+  }
+}
+
+
+
+.banner,
+.banner > div {
+  overflow-x: hidden;
+}
+
+#loggerTab,
+#loggerContainer {
+  overflow-x: auto;
+}
+
+/* Default: let tabs wrap if needed */
+.header-tabs {
+  flex-wrap: wrap;
+}
+
+/* Card grid: two-up on small tablets, single column on phones */
+#modulesContainer {
+  justify-content: center;
+}
+.psu-module {
+  width: 160px;
+}
+
+/* Readability on phones */
+.readings .reading {
+  font-size: 18px;
+}
+
+/* Your actual inner banner wrapper (no .container class) */
+.banner > div {
+  flex-wrap: wrap;
+}
+
+/* Rotate tip */
+.rotate-tip {
+  text-align: center;
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #666;
+}
+@media (min-width: 480px) {
+  .rotate-tip {
+    display: none;
+  }
+}
+
+/* Header + panels + command bar on ≤ 768px */
+@media (max-width: 768px) {
+  /* instrument + logger full width */
+  #instrumentTab,
+  #loggerTab {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  /* data logger container */
+  #loggerContainer {
+    padding: 0;
+  }
+  #loggerContainer canvas {
+    max-width: 100% !important;
+  }
+  #loggerTab,
+#loggerContainer {
+  overflow-x: auto;
+}
+
+
+  /* Header: let the inner container breathe on phones */
+  .banner .container {
+    width: 100%;
+    padding: 0 12px;
+  }
+  .header-tabs {
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 14px;
+  }
+
+  /* command bar: prevent overflow; stack nicely on small screens */
+  .command-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* --- Fix header wrap + whitespace on phones --- */
+@media (max-width: 840px) {
+  .banner {
+    padding: 8px 10px !important;
+  }
+  .banner > div {
+    width: 100% !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+  .banner img {
+    display: block;
+    margin: 0 auto;
+  }
+  .header-tabs {
+    order: 2;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: right;
+    gap: 16px !important;
+  }
+}
+
+/* Tighten further on very narrow phones */
+@media (max-width: 400px) {
+  .header-tabs {
+    gap: 12px;
+  }
+}
+
+/* command bar: shared input sizing */
+.command-bar {
+  flex-wrap: wrap;
+}
+/* .command-bar input, */
+/* .command-bar select, */
+.command-bar button {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* --- command bar: stop overflow + center the 3 buttons under 835px --- */
+@media (max-width: 835px) {
+  .command-bar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    justify-items: center;
+    padding: 16px;
+  }
+  .command-bar > button {
+    width: min(180px, 100%);
+  }
+}
+
+/* Desktop command bar layout */
+@media (min-width: 836px) {
+  .command-bar {
+    display: flex;
+    align-items: center;
+  }
+}

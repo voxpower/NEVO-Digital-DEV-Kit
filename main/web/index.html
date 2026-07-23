@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VoxPower V22</title>
+</title>
+  <link rel="stylesheet" href="style.css">
+<script src="chart.min.js"></script>
+
+
+</head>
+<body>
+
+  <div class="banner" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #000;">
+     <div style="width: 80%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+  <img src='logo.png'>
+  
+  
+  <div class="header-tabs" style="display: flex; gap: 40px">
+    <a href="#" class="header-tab active" onclick="openTab(event, 'instrumentTab')">Instrument</a>
+    <a href="#" class="header-tab" onclick="openTab(event, 'loggerTab')">Data Logger</a>
+    <a href="#" class="header-tab" onclick="openTab(event, 'comingSoonTab')" >Coming Soon</a>
+  </div>
+    </div>
+</div>
+
+
+
+ <div class="spacer"></div>
+
+ <div id="instrumentTab" class="tab-content active-tab">
+   <div id="modulesContainer"></div>
+ </div>
+
+<div id="loggerTab" class="tab-content">
+   <div id="loggerContainer">
+     <!-- Canvas graphs will be injected here -->
+   </div>
+ </div>
+ 
+ <div id="comingSoonTab" class="tab-content">
+   <h3>Coming Soon...</h3>
+ </div>
+
+ <div id="CommandContainer" class="command-bar">
+     <button onclick="storeAllNVM()">STORE ALL NVM</button>
+     <button onclick="importSettings()">IMPORT FILE</button>
+     <button onclick="exportSettings()">EXPORT FILE</button>
+ </div>
+
+<script src = "script.js"></script>
+</body>
+</html>

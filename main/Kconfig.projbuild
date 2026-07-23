@@ -1,0 +1,18 @@
+# Kconfig.projbuild - Project-specific Kconfig entries
+
+menu "Application Configuration"
+
+    config CONFIG_WIFI_SSID
+        string "Wi-Fi SoftAP SSID"
+        default "VOXPOWER SOFTAP"
+        help
+            SSID for the Wi-Fi SoftAP.
+
+    config CONFIG_WIFI_PASSWORD
+        string "Wi-Fi SoftAP Password"
+        default "your_password"
+        help
+            Password for the Wi-Fi SoftAP.
+            Should be at least 8 characters long for WPA2.
+
+endmenu
