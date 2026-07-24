@@ -584,6 +584,15 @@ static void ws_async_send(void *arg)
 
 	char buff[1024];
 	
+	static size_t max_clients = CONFIG_LWIP_MAX_LISTENING_TCP;
+	size_t fds = max_clients;
+	int client_fds[max_clients];
+	
+	if (httpd_get_client_list(hd, &fds, client_fds) != ESP_OK) {
+        free(resp_arg);
+        return;
+    }
+    
 	for (int j = 0; j < MAX_N_DEVICES; j++)
 	{
 		
@@ -622,27 +631,23 @@ static void ws_async_send(void *arg)
 		ws_pkt.payload = (uint8_t *)buff;
 		ws_pkt.len = strlen(buff);
 		ws_pkt.type = HTTPD_WS_TYPE_TEXT;
-	
-		static size_t max_clients = CONFIG_LWIP_MAX_LISTENING_TCP;
-		size_t fds = max_clients;
-		int client_fds[max_clients];
-
-		esp_err_t ret = httpd_get_client_list(http_server, &fds, client_fds);
-	
-		if (ret != ESP_OK)
-		{
-			return;
-		}
-	
-		for (int i = 0; i < fds; i++)
-		{
-			int client_info = httpd_ws_get_fd_info(http_server, client_fds[i]);
-			if (client_info == HTTPD_WS_CLIENT_WEBSOCKET)
-			{
-				httpd_ws_send_frame_async(hd, client_fds[i], &ws_pkt);
-			}
-		}
 		
+		// Send to all valid WS clients
+        for (int i = 0; i < fds; i++) {
+			if (client_fds[i] == -1) continue;
+			
+            if (httpd_ws_get_fd_info(hd, client_fds[i]) == HTTPD_WS_CLIENT_WEBSOCKET) {
+                esp_err_t ret = httpd_ws_send_frame_async(hd, client_fds[i], &ws_pkt);
+                
+                if (ret == -1) {
+                    ESP_LOGW("WS", "return: %d", ret);
+                    httpd_sess_trigger_close(hd, client_fds[i]);
+                    //Mark this FD as invalid for the rest of this loop
+                    client_fds[i] = -1; 
+                }
+            }
+        }
+		vTaskDelay(pdMS_TO_TICKS(10));
 	}
 	
 	memset(buff, 0, sizeof(buff));
@@ -656,26 +661,21 @@ static void ws_async_send(void *arg)
 	ws_pkt.len = strlen(buff);
 	ws_pkt.type = HTTPD_WS_TYPE_TEXT;
 		
-	static size_t max_clients = CONFIG_LWIP_MAX_LISTENING_TCP;
-	size_t fds = max_clients;
-	int client_fds[max_clients];
-	
-	esp_err_t ret = httpd_get_client_list(http_server, &fds, client_fds);
+//	for (int i = 0; i < fds; i++)
+//	{
+//		int client_info = httpd_ws_get_fd_info(http_server, client_fds[i]);
+//		if (client_info == HTTPD_WS_CLIENT_WEBSOCKET)
+//		{
+//			httpd_ws_send_frame_async(hd, client_fds[i], &ws_pkt);
+//		}
+//	}
 
-	if (ret != ESP_OK)
-	{
-		return;
-	}
-		
-	for (int i = 0; i < fds; i++)
-	{
-		int client_info = httpd_ws_get_fd_info(http_server, client_fds[i]);
-		if (client_info == HTTPD_WS_CLIENT_WEBSOCKET)
-		{
-			httpd_ws_send_frame_async(hd, client_fds[i], &ws_pkt);
-		}
-	}
-
+	for (int i = 0; i < fds; i++) {
+        if (client_fds[i] != -1 && httpd_ws_get_fd_info(hd, client_fds[i]) == HTTPD_WS_CLIENT_WEBSOCKET) {
+            httpd_ws_send_frame_async(hd, client_fds[i], &ws_pkt);
+        }
+    }
+    
 	ws_settings_flag = false;
 	ws_send_readings = false;
 	
