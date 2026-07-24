@@ -335,7 +335,7 @@ static scpi_result_t scpi_set_handler(
 		    default: SCPI_ErrorPush(context, SCPI_ERROR_ILLEGAL_PARAMETER_VALUE); return SCPI_RES_ERR;
 		    }
 		} else {
-			param = param_var.content.value*scale_factor;
+			param = (param_var.content.value*scale_factor)+0.5;		//+0.5 to eliminate rounding error
 			if (cmd_def->mask != 255)
 			{
 				param = param & cmd_def->mask;
@@ -376,7 +376,7 @@ static scpi_result_t scpi_set_handler(
 			SCPI_ErrorPush(context, SCPI_ERROR_COMMAND);
 			return SCPI_RES_ERR;
 		} else {
-			param = value*scale_factor;
+			param = (value*scale_factor)+0.5;		//+0.5 to eliminate rounding error;
 		}
 	}
     
