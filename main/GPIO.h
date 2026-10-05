@@ -9,14 +9,7 @@
 #ifndef MAIN_GPIO_H_
 #define MAIN_GPIO_H_
 
-//GPIOs for devkitC-1
-//#define INHA    6
-//#define INHB    7
-//#define INHC	15
-//#define INHD    16
-
-//GPIOs for TinyS3
-
+//GPIO
 #define INH1    3
 #define INH2    2
 #define INH3	0

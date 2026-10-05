@@ -54,6 +54,7 @@
 #include "soc/gpio_reg.h"
 #include "soc/soc.h"
 #include "tasks_notifications.h"
+#include "cra_tests.h"
 
 static const char *TAG = "SCPI-DEF";
 
@@ -1500,6 +1501,18 @@ static scpi_result_t GPIO_CommandHandlerQ(scpi_t *context)
 
 /* ******************************************************************************************** */
 /* TEST callbacks */
+
+scpi_result_t TEST_craQ(scpi_t * context) {
+    bool passed = cra_run_full_verification_suite();
+    
+    if (passed) {
+        SCPI_ResultMnemonic(context, "PASS\r\n");
+    } else {
+        SCPI_ResultMnemonic(context, "FAIL\r\n");
+    }
+    return SCPI_RES_OK;
+}
+
 static scpi_result_t TEST_ChoiceQ(scpi_t * context) {
 
     int32_t param;
@@ -1962,6 +1975,7 @@ const scpi_command_t scpi_commands[] = {
     {.pattern = "GPIO?", .callback = GPIO_CommandHandlerQ,},
 
 	/* Test */
+	{.pattern = "TEST:CRA:EXECute?", .callback = TEST_craQ,},
     /*{.pattern = "TEST:BOOL", .callback = TEST_Bool,},*/
     /*{.pattern = "TEST:CHOice?", .callback = TEST_ChoiceQ,},*/
     /*{.pattern = "TEST#:NUMbers#", .callback = TEST_Numbers,},*/

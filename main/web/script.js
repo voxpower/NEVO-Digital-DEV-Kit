@@ -619,7 +619,7 @@ function exportSettings() {
 		      MFR_SETTINGS: snsterm_value || 0,
 		      OPERATION: onoff_value || 0,
 		      ZONE_CONFIG: zoneval[ch] || 0,
-		      addr: parseInt(document.getElementById(`ch${ch}_addr`).value) || 0
+		      MFR_SMBUS_ADDRESS: parseInt(document.getElementById(`ch${ch}_addr`).value) || 0
 		    });
   	 }
   }
