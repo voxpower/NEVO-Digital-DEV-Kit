@@ -1,6 +1,6 @@
 idf_component_register(
     SRCS 
-        "main.c"  "scpi_socket.c" "smbus.c" "i2c.c" "http.c" "cJSON.c" "pmbus.c" "scpi_http.c"
+        "main.c"  "scpi_socket.c" "smbus.c" "i2c.c" "http.c" "cJSON.c" "cra_tests.c" "pmbus.c" "scpi_http.c"
         "usb_descriptors.c"  
         "usbtmc_app.c" "scpi_usbtmc.c" "LED.c"
 		"board_api.c" "softap.c" "common/scpi-def.c"

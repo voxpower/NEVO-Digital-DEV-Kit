@@ -87,6 +87,8 @@ void init_devices()
 		ESP_LOGI(TAG, "IDN_HWrev %s", IDN_HWrev);		
 	}
     
+    smbus_rm_gencall();
+    
 	//remove last "|"
 	IDN_address[strlen(IDN_address)-1] = '\0';
 	IDN_serials[strlen(IDN_serials)-1] = '\0';	//Checked for 8 module serials. -> OK

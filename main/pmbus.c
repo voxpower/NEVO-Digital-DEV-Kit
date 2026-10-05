@@ -404,6 +404,11 @@ void smbus_init_device(uint8_t indexunit)
 	ESP_LOGE(TAG, "GPIO %d LEVEL %d",GPIO_options[indexunit].tag, 0);
 }
 
+void smbus_rm_gencall()
+{
+	i2c_master_bus_rm_device(smbus_info_gencall.dev_handle);
+}
+
 void smbus_read_device(uint8_t indexunit)
 {
 	esp_err_t ret;

@@ -98,6 +98,10 @@ typedef struct
  void smbus_init(void);
  esp_err_t smbus_add_device(smbus_info_t * smbus_info, i2c_address_t address);
  
+ 
+ 
+ void smbus_rm_gencall();
+ 
  /**
   * @brief Set the I2C timeout.
   *        I2C transactions that do not complete within this period are considered an error.
