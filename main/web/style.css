@@ -1,18 +1,40 @@
 body {
-      margin: 0;
-      background: #fff;
-      color: #000;
-      font-family: arial, 'helvetica neue', helvetica, sans-serif;
-    }
-    .banner {
-      background: #000;
-      padding: 20px 0;
-    }
-    .banner img {
-      max-height: 150px;
-      padding: 20px 0px 20px 0px
-    }
-    .header-tab {
+  margin: 0;
+  background: #fff;
+  color: #000;
+  font-family: arial, 'helvetica neue', helvetica, sans-serif;
+}
+
+.banner {
+  background: #000;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.banner .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.banner img {
+  max-height: 150px;
+  padding: 20px 0px;
+}
+
+.header-tabs {
+  display: flex;
+  gap: 40px;
+  align-items: flex-end;
+  padding-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.header-tab {
   color: #fff;
   text-decoration: none;
   font-family: arial, 'helvetica neue', helvetica, sans-serif;
@@ -20,219 +42,260 @@ body {
   cursor: pointer;
   display: flex;
   gap: 20px;
-  padding: 45px 0px 0px 0px
+}
 
-}
-.header-tab.active {
-  color: #bbd33b;
-}
+.header-tab.active,
 .header-tab:hover {
   color: #bbd33b;
 }
-    .spacer { height: 20px; }
-    .tab-container {
-      display: flex;
-      background: #fff;
-      padding: 10px;
-      margin-bottom: 15px;
-    }
 
-    .tab-content {
-      display: none;
-      padding: 15px;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-top: none;
-    }
-    .tab-content.active-tab {
-      display: block;
-    }
-    #modulesContainer {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      padding: 10px;
-    }
-    .psu-module {
-      position: relative;
-      background: #e6e7e8;
-      border: 0;
-      border-radius: 8px;
-      display: none;
-      width: 150px;
-      padding: 10px;
-      box-shadow: 0 0 7px #636466;
-      font-size: 12px;
-    }
+.spacer { 
+  height: 20px; 
+}
 
+.tab-container {
+  display: flex;
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 15px;
+}
 
-    .module-header {
-      display: flex;
-      margin-bottom: 8px;
-      border-bottom: 1px solid #636466;
-      padding-bottom: 6px;
-    }
-    .channel-number {
-      font-size: 24px;
-      font-weight: bold;
-      color: #000;
-      width: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .module-info {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      color: #000;
-      font-size: 14px;
-      line-height: 1.2;
-    }
-    .section-title {
-      font-size: 14px;
-      color: #000;
-      margin: 15px 0 4px;
-      text-align: center;
-      text-transform: uppercase;
-    }
-    .readings {
-      background: #fff;
-      border: 1px solid #636466;
-      padding: 8px;
-      margin-bottom: 8px;
-      border-radius: 6px;
-    }
-    .reading {
-      display: flex;
-      justify-content: flex-start;
-      font-size: 20px;
-      font-family: monospace;
-      margin: 4px 0;
-    }
-    .reading .value {
-      display: inline-block;
-      width: 72px;
-      text-align: right;
-      color: #000;
-    }
-    .reading .unit {
-      display: inline-block;
-      width: 24px;
-      text-align: left;
-      padding-left: 5px;
-      color: #bbd33b;
-    }
-    .settings label {
-      display: block;
-      margin: 3px 0;
-      color: #000;
-      font-size: 12px;
-    }
-    .settings label span {
-      display: inline-block;
-      width: 53px;
-      text-align: center;
-    }
-    .settings input {
-      width: 62px;
-      padding: 4px 4px 4px 6px;
-      border: 1px solid #000;
-      border-radius: 3px;
-      background: #fff;
-      color: #000;
-      font-family: arial, 'helvetica neue', helvetica, sans-serif;
-    }
+.tab-content {
+  display: none;
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+}
 
-    input[type=number]::-webkit-outer-spin-button,
-    input[type=number]::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
+.tab-content.active-tab {
+  display: block;
+}
 
-    input[type=number] {
-      -moz-appearance: textfield;
-    }
+#modulesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+}
 
+.psu-module {
+  position: relative;
+  background: #e6e7e8;
+  border: 0;
+  border-radius: 8px;
+  display: none;
+  flex-direction: column;
+  width: 160px;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 0 7px #636466;
+  font-size: 12px;
+}
 
-    .hardware {
-      text-align: center;
-      font-size: 12px;
-      color: #000;
-      padding: 10px 0px 3px 0px;
-    }
+.module-header {
+  display: flex;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #636466;
+  padding-bottom: 6px;
+}
 
-    .indicators {
-      display: flex;
-      gap: 5px;
-      margin: 10px 0;
-    }
-    .indicator {
-      flex: 1 1 50%;
-      max-width: 50%;
-      text-align: center;
-      padding: 5px;
-      font-size: 14px;
-      border-radius: 4px;
-      color: #000;
-    }
-    .indicator.green { background: #a3bf27; }
-    .indicator.red { background: #f00; }
+.channel-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .setting-label-indicator {
-      display: inline-block;
-      vertical-align:middle;
-      padding: 3px 0px;  /* controls spacing around the word */
-      border-radius: 4px;
-      font-size: 12px;
-      color: #000;
-      background: #a3bf27;
-  }
+.module-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #000;
+  font-size: 14px;
+  line-height: 1.2;
+}
 
-  .setting-label-indicator.red {
-      background: #f00;
-  }
+.section-title {
+  font-size: 14px;
+  color: #000;
+  margin: 15px 0 4px;
+  text-align: center;
+  text-transform: uppercase;
+}
 
+.readings {
+  background: #fff;
+  border: 1px solid #636466;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+}
 
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-top: 8px;
-    }
-    .buttons button {
-      flex: 1 1 48%;
-      padding: 6px;
-      background: #636466;
-      color: #fff;
-      border: 1px solid #636466;
-      border-radius: 4px;
-      cursor: pointer;
-      font-family: arial, 'helvetica neue', helvetica, sans-serif;
-      font-size: 14px;
-      transition: background 0.3s;
-    }
-    .buttons button.full-width {
-      flex: 1 1 100%;
-    }
-    .buttons button:hover {
-      background: #fff;
-      color: #000;
-    }
-    .onoff-btn {
-      background-color: grey;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 4px;
-      font-weight: bold;
-    }
+.readings .reading {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  font-size: 18px;
+  font-family: monospace;
+  margin: 4px 0;
+}
 
-    .buttons .onoff-btn:hover {
+.reading .value {
+  display: inline-block;
+  width: 72px;
+  text-align: right;
+  color: #000;
+}
+
+.reading .unit {
+  display: inline-block;
+  width: 26px;
+  text-align: left;
+  padding-left: 12px;
+  color: #bbd33b;
+}
+
+.reading .unit-mah {
+  font-size: 13px;
+}
+
+.settings label {
+  display: block;
+  margin: 3px 0;
+  color: #000;
+  font-size: 12px;
+}
+
+.settings label span {
+  display: inline-block;
+  width: 53px;
+  text-align: center;
+}
+
+.settings input[readonly] {
+  background: #e6e7e8;
+  color: #333;
+  cursor: default;
+}
+
+/* Derived VMAX beyond the module's ceiling - must beat input[readonly] above,
+   so it has to stay after it in source order (same specificity). */
+.settings input.over-limit,
+.settings input[readonly].over-limit {
+  background: #f00;
+  color: #fff;
+}
+
+.settings input,
+.battery-field input {
+  width: 62px;
+  padding: 4px 4px 4px 6px;
+  border: 1px solid #000;
+  border-radius: 3px;
+  background: #fff;
+  color: #000;
+  font-family: arial, 'helvetica neue', helvetica, sans-serif;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.hardware {
+  text-align: center;
+  font-size: 12px;
+  color: #000;
+  padding: 10px 0px 3px 0px;
+}
+
+.indicators {
+  display: flex;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.indicator {
+  flex: 1 1 50%;
+  max-width: 50%;
+  text-align: center;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 4px;
+  color: #000;
+}
+
+.indicator.green { background: #a3bf27; }
+.indicator.red { background: #f00; }
+
+.setting-label-indicator {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 3px 0px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #000;
+  background: #a3bf27;
+}
+
+.setting-label-indicator.red {
+  background: #f00;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.buttons button {
+  flex: 1 1 48%;
+  padding: 6px;
+  background: #636466;
+  color: #fff;
+  border: 1px solid #636466;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: arial, 'helvetica neue', helvetica, sans-serif;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.buttons button.full-width {
+  flex: 1 1 100%;
+}
+
+.buttons button:hover {
+  background: #fff;
+  color: #000;
+}
+
+.onoff-btn {
+  background-color: grey;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.buttons .onoff-btn:hover {
   background-color: #636466 !important;
   color: white !important;
   cursor: default;
@@ -248,101 +311,575 @@ body {
   color: white;
 }
 
-
-    .command-bar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      justify-content: center;
-      padding: 15px;
-      margin: 20px;
-      background: #e6e7e8;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #636466;
-    }
-
-    .command-bar button {
-      padding: 8px 14px;
-      background: #636466;
-      color: #fff;
-      font-weight: bold;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      vertical-align: bottom;
-    }
-    
-    .command-bar button:hover {
-      background: #bbd33b;
-      color: #fff;
-    }
-
-
-.banner .container {
+.command-bar {
   display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  padding: 15px;
+  margin: 20px;
+  background: #e6e7e8;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #636466;
   flex-wrap: wrap;
+}
+
+.command-bar button {
+  padding: 8px 14px;
+  background: #636466;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  vertical-align: bottom;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.command-bar button:hover {
+  background: #bbd33b;
+  color: #fff;
+}
+
+/* Dynamic Mode & Battery UI Elements */
+.mode-view {
+  display: block;
+}
+
+.mode-view.hidden {
+  display: none !important;
+}
+
+.mode-toggle-wrap {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.mode-toggle-btn {
+  background-color: #a3bf27 !important;
+  color: white !important;
+  margin-top: 0;
+}
+
+/* Guarantee the mode button and the ON button render as the same box */
+.buttons .onoff-btn,
+.buttons .mode-toggle-btn {
+  padding: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.2;
+  border: 1px solid #636466;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.mode-toggle-btn:hover {
+  background-color: #8da61e !important;
+  color: white !important;
+}
+
+.battery-field {
+  margin: 3px 0 6px;
+  color: #000;
+  font-size: 12px;
+  text-align: center;
+}
+
+.battery-field label {
+  display: block;
+  font-family: arial, 'helvetica neue', helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  color: #000;
+  margin-bottom: 3px;
+}
+
+.chem-select-btn {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #000;
+  border-radius: 3px;
+  background: #fff;
+  color: #000;
+  font-family: arial, 'helvetica neue', helvetica, sans-serif;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.chem-select-btn:hover {
+  background: #f0f0f0;
+}
+
+/* Charge parameters locked while charging */
+.settings input:disabled,
+.battery-field input:disabled,
+.chem-select-btn:disabled {
+  background: #e6e7e8;
+  color: #808285;
+  border-color: #a6a8ab;
+  cursor: not-allowed;
+}
+
+.chem-select-btn:disabled:hover {
+  background: #e6e7e8;
+}
+
+.vp-btn-start {
+  background-color: #a3bf27 !important;
+  color: white !important;
+  font-weight: bold;
+}
+.vp-btn-start:hover {
+  background-color: #8da61e !important;
+}
+
+.vp-btn-reset {
+  background-color: #f4a27e !important;
+  color: white !important;
+  font-weight: bold;
+}
+.vp-btn-reset:hover {
+  background-color: #e58d67 !important;
+}
+
+.vp-btn-stop {
+  background-color: #f00 !important;
+  color: white !important;
+  font-weight: bold;
+}
+.vp-btn-stop:hover {
+  background-color: #c00 !important;
+}
+
+.vp-pill {
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  color: #fff;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.vp-pill-green {
+  background-color: #a3bf27;
+}
+
+/* Disabled states: mode toggle locked out mid-charge, START showing CHARGING */
+.buttons button:disabled,
+.buttons button:disabled:hover {
+  cursor: not-allowed;
+}
+
+.buttons .mode-toggle-btn:disabled,
+.buttons .mode-toggle-btn:disabled:hover {
+  background-color: #a6a8ab !important;
+  color: #fff !important;
+  border-color: #a6a8ab !important;
+}
+
+.buttons .vp-btn-start:disabled,
+.buttons .vp-btn-start:disabled:hover {
+  background-color: #8da61e !important;
+  color: #fff !important;
+  cursor: default;
+}
+
+/* mAh readout sitting inside the battery button group, under START.
+   Reuses .readings/.reading so the type matches the Readings panel. */
+.batt-mah {
+  flex: 1 1 100%;
+  margin-bottom: 0;
+  padding: 4px 8px;
+}
+
+.batt-mah .reading {
+  margin: 0;
+}
+
+.vp-pill-fault {
+  background-color: #f00;
+}
+
+.vp-pill-complete {
+  background-color: #8da61e;
+}
+
+.vp-pill-amber {
+  background-color: #f4a27e;
+}
+
+.vp-pill-gray {
+  background-color: #a6a8ab;
+}
+
+/* ADVANCED CHEMISTRY SELECTION MODAL */
+.chemistry-modal-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.chemistry-modal-backdrop.open {
+  display: flex !important;
+}
+
+.chemistry-modal-card {
+  background: #fff;
+  color: #000;
+  border: 1px solid #636466;
+  border-radius: 8px;
+  width: 950px;
+  max-width: 98vw;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 12px #636466;
+  font-family: arial, 'helvetica neue', helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.chemistry-modal-header {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
-  margin: 0 auto;
+  font-weight: bold;
+  font-size: 15px;
+  background: #000;
+  padding: 12px 18px;
+  border-bottom: 1px solid #636466;
+  color: #bbd33b;
 }
 
-.header-tabs {
+.chemistry-modal-close {
+  cursor: pointer;
+  font-size: 22px;
+  color: #e6e7e8;
+}
+.chemistry-modal-close:hover {
+  color: #bbd33b;
+}
+
+.chemistry-modal-body {
   display: flex;
-  gap: 40px;
-  align-items: flex-end;
-  padding-bottom: 12px;
+  flex: 1;
+  overflow: hidden;
 }
 
-@media (max-width: 768px) {
+/* Modal Left Sidebar */
+.chem-sidebar {
+  width: 280px;
+  background: #e6e7e8;
+  border-right: 1px solid #636466;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.chem-sidebar-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #636466;
+  letter-spacing: 0.5px;
+}
+
+.chem-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.chem-option-btn {
+  background: #fff;
+  color: #000;
+  border: 1px solid #636466;
+  padding: 10px 12px;
+  border-radius: 4px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chem-option-btn:hover {
+  background: #f2f2f2;
+  border-color: #a3bf27;
+}
+
+.chem-option-btn.active {
+  background: #a3bf27 !important;
+  color: #fff !important;
+  border-color: #8da61e !important;
+}
+
+.chem-row-actions {
+  display: inline-flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.chem-edit-link,
+.chem-del-link {
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.chem-edit-link {
+  color: #636466;
+}
+
+.chem-del-link {
+  color: #636466;
+}
+
+.chem-edit-link:hover {
+  color: #8da61e;
+}
+
+.chem-del-link:hover {
+  color: #f00;
+}
+
+.chem-option-btn.active .chem-edit-link,
+.chem-option-btn.active .chem-del-link {
+  color: #fff;
+}
+
+.chem-add-custom {
+  background: #fff;
+  color: #636466;
+  text-align: center;
+  margin-top: 4px;
+  border: 1px dashed #636466;
+  justify-content: center;
+}
+.chem-add-custom:hover {
+  background: #f2f2f2;
+  color: #000;
+  border-color: #a3bf27;
+}
+
+.chem-details-box {
+  background: #fff;
+  border: 1px solid #636466;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 11px;
+  color: #000;
+  line-height: 1.4;
+}
+
+.chem-details-box h4 {
+  margin: 0 0 8px 0;
+  color: #000;
+  font-size: 12px;
+}
+
+.chem-details-box ul {
+  margin: 5px 0 0 0;
+  padding-left: 16px;
+  color: #333;
+}
+
+.chem-details-box li {
+  margin-bottom: 3px;
+}
+
+/* Modal Right Main Area */
+.chem-main-area {
+  flex: 1;
+  background: #fff;
+  color: #000;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.chem-graph-header h3 {
+  margin: 0 0 10px 0;
+  font-size: 15px;
+  color: #000;
+  text-align: center;
+}
+
+.chem-graph-wrapper {
+  flex: 1;
+  min-height: 320px;
+  position: relative;
+}
+
+.chem-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px solid #ddd;
+}
+
+.chem-cancel-btn {
+  background: #636466;
+  color: #fff;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+}
+.chem-cancel-btn:hover {
+  background: #fff;
+  color: #000;
+  border: 1px solid #636466;
+}
+
+.chem-apply-btn {
+  background: #a3bf27;
+  color: #fff;
+  border: none;
+  padding: 9px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background 0.2s;
+}
+.chem-apply-btn:hover {
+  background: #8da61e;
+}
+
+/* CUSTOM FORM VIEW STYLING */
+.chem-custom-form-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  background: #fdfdfd;
+  padding: 10px;
+}
+
+.chem-custom-form-container h3 {
+  margin: 0 0 15px 0;
+  color: #000;
+  font-size: 16px;
+  border-bottom: 2px solid #a3bf27;
+  padding-bottom: 6px;
+}
+
+.custom-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.custom-form-grid .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.custom-form-grid .form-group.full-width {
+  grid-column: span 2;
+}
+
+.custom-form-grid label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #000;
+}
+
+.custom-form-grid input,
+.custom-form-grid select {
+  padding: 8px 10px;
+  border: 1px solid #636466;
+  border-radius: 4px;
+  font-size: 13px;
+  box-sizing: border-box;
+  background: #fff;
+  color: #000;
+}
+
+.custom-form-grid input:focus,
+.custom-form-grid select:focus {
+  border-color: #a3bf27;
+  outline: none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 840px) {
+  .banner {
+    padding: 8px 10px !important;
+  }
   .banner .container {
-    flex-direction: column;
+    width: 100% !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
     align-items: center;
   }
-
+  .banner img {
+    display: block;
+    margin: 0 auto;
+  }
   .header-tabs {
-    justify-content: center;
-    padding-bottom: 12px;
+    order: 2;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: right;
+    gap: 16px !important;
+  }
+  .chemistry-modal-body {
+    flex-direction: column;
+  }
+  .chem-sidebar {
+    width: 100%;
+    max-height: 200px;
   }
 }
 
-
-
-.banner,
-.banner > div {
-  overflow-x: hidden;
+@media (max-width: 835px) {
+  .command-bar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    justify-items: center;
+    padding: 16px;
+  }
+  .command-bar > button {
+    width: min(180px, 100%);
+  }
 }
 
+/* --- Responsive rules carried over from the original stylesheet --- */
 #loggerTab,
 #loggerContainer {
   overflow-x: auto;
 }
 
-/* Default: let tabs wrap if needed */
-.header-tabs {
-  flex-wrap: wrap;
-}
-
-/* Card grid: two-up on small tablets, single column on phones */
-#modulesContainer {
-  justify-content: center;
-}
-.psu-module {
-  width: 160px;
-}
-
-/* Readability on phones */
-.readings .reading {
-  font-size: 18px;
-}
-
-/* Your actual inner banner wrapper (no .container class) */
-.banner > div {
-  flex-wrap: wrap;
-}
-
-/* Rotate tip */
 .rotate-tip {
   text-align: center;
   margin: 8px 0 0;
@@ -355,9 +892,7 @@ body {
   }
 }
 
-/* Header + panels + command bar on ≤ 768px */
 @media (max-width: 768px) {
-  /* instrument + logger full width */
   #instrumentTab,
   #loggerTab {
     width: 100%;
@@ -367,43 +902,38 @@ body {
     box-sizing: border-box;
   }
 
-  /* data logger container */
   #loggerContainer {
     padding: 0;
   }
   #loggerContainer canvas {
     max-width: 100% !important;
   }
-  #loggerTab,
-#loggerContainer {
-  overflow-x: auto;
-}
 
-
-  /* Header: let the inner container breathe on phones */
   .banner .container {
     width: 100%;
     padding: 0 12px;
+    flex-direction: column;
+    align-items: center;
   }
   .header-tabs {
     gap: 16px;
     flex-wrap: wrap;
     font-size: 14px;
+    justify-content: center;
+    padding-bottom: 12px;
   }
 
-  /* command bar: prevent overflow; stack nicely on small screens */
   .command-bar {
     flex-direction: column;
     align-items: stretch;
   }
 }
 
-/* --- Fix header wrap + whitespace on phones --- */
 @media (max-width: 840px) {
   .banner {
     padding: 8px 10px !important;
   }
-  .banner > div {
+  .banner .container {
     width: 100% !important;
     display: flex;
     flex-wrap: wrap;
@@ -424,25 +954,6 @@ body {
   }
 }
 
-/* Tighten further on very narrow phones */
-@media (max-width: 400px) {
-  .header-tabs {
-    gap: 12px;
-  }
-}
-
-/* command bar: shared input sizing */
-.command-bar {
-  flex-wrap: wrap;
-}
-/* .command-bar input, */
-/* .command-bar select, */
-.command-bar button {
-  box-sizing: border-box;
-  max-width: 100%;
-}
-
-/* --- command bar: stop overflow + center the 3 buttons under 835px --- */
 @media (max-width: 835px) {
   .command-bar {
     display: grid;
@@ -456,10 +967,15 @@ body {
   }
 }
 
-/* Desktop command bar layout */
 @media (min-width: 836px) {
   .command-bar {
     display: flex;
     align-items: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .header-tabs {
+    gap: 12px;
   }
 }

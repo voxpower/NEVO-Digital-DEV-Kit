@@ -501,6 +501,9 @@ static esp_err_t handle_ws_req(httpd_req_t *req)
 				#ifdef DEBUG_HTTP
 					ESP_LOGE(TAG, "PMBus timeout");
 				#endif
+				//Restore outputs to their state before Store NVM
+				REG_WRITE(GPIO_OUT_W1TC_REG, GPIO_ALL);		//All outputs ON
+				REG_WRITE(GPIO_OUT_W1TS_REG, gpio_status);	//Recall GPIO status
 			    httpd_resp_send_err(req, HTTPD_408_REQ_TIMEOUT, "PMBus timeout");
 			    return ESP_FAIL;
 			}
@@ -525,6 +528,9 @@ static esp_err_t handle_ws_req(httpd_req_t *req)
 				#ifdef DEBUG_HTTP
 					ESP_LOGE(TAG, "PMBus timeout");
 				#endif
+				//Restore outputs to their state before Store NVM
+				REG_WRITE(GPIO_OUT_W1TC_REG, GPIO_ALL);		//All outputs ON
+				REG_WRITE(GPIO_OUT_W1TS_REG, gpio_status);	//Recall GPIO status
 			    httpd_resp_send_err(req, HTTPD_408_REQ_TIMEOUT, "PMBus timeout");
 			    return ESP_FAIL;
 			}

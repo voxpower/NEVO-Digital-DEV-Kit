@@ -1,53 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VoxPower V22</title>
-</title>
   <link rel="stylesheet" href="style.css">
-<script src="chart.min.js"></script>
-
-
+  <script src="chart.min.js"></script>
 </head>
 <body>
 
-  <div class="banner" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #000;">
-     <div style="width: 80%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
-  <img src='logo.png'>
-  
-  
-  <div class="header-tabs" style="display: flex; gap: 40px">
-    <a href="#" class="header-tab active" onclick="openTab(event, 'instrumentTab')">Instrument</a>
-    <a href="#" class="header-tab" onclick="openTab(event, 'loggerTab')">Data Logger</a>
-    <a href="#" class="header-tab" onclick="openTab(event, 'comingSoonTab')" >Coming Soon</a>
-  </div>
+  <div class="banner">
+    <div class="container">
+      <img src="logo.png" alt="Logo">
+      
+      <div class="header-tabs">
+        <a href="#" class="header-tab active" onclick="openTab(event, 'instrumentTab')">Instrument</a>
+        <a href="#" class="header-tab" onclick="openTab(event, 'loggerTab')">Data Logger</a>
+        <a href="#" class="header-tab" onclick="openTab(event, 'comingSoonTab')">Coming Soon</a>
+      </div>
     </div>
-</div>
+  </div>
 
+  <div class="spacer"></div>
 
+  <div id="instrumentTab" class="tab-content active-tab">
+    <div id="modulesContainer"></div>
+  </div>
 
- <div class="spacer"></div>
-
- <div id="instrumentTab" class="tab-content active-tab">
-   <div id="modulesContainer"></div>
- </div>
-
-<div id="loggerTab" class="tab-content">
-   <div id="loggerContainer">
-     <!-- Canvas graphs will be injected here -->
-   </div>
- </div>
+  <div id="loggerTab" class="tab-content">
+    <div id="loggerContainer">
+      <!-- Canvas graphs injected dynamically -->
+    </div>
+  </div>
  
- <div id="comingSoonTab" class="tab-content">
-   <h3>Coming Soon...</h3>
- </div>
+  <div id="comingSoonTab" class="tab-content">
+    <h3>Coming Soon...</h3>
+  </div>
 
- <div id="CommandContainer" class="command-bar">
-     <button onclick="storeAllNVM()">STORE ALL NVM</button>
-     <button onclick="importSettings()">IMPORT FILE</button>
-     <button onclick="exportSettings()">EXPORT FILE</button>
- </div>
+  <div id="CommandContainer" class="command-bar">
+    <button onclick="storeAllNVM()">STORE ALL NVM</button>
+    <button onclick="importSettings()">IMPORT FILE</button>
+    <button onclick="exportSettings()">EXPORT FILE</button>
+  </div>
 
-<script src = "script.js"></script>
+  <!-- ADVANCED CHEMISTRY SELECTION POPUP MODAL -->
+  <div id="chemistryModal" class="chemistry-modal-backdrop">
+    <div class="chemistry-modal-card">
+      
+      <div class="chemistry-modal-header">
+        <span id="modalTitle">Select Battery Chemistry &mdash; Channel --</span>
+        <span class="chemistry-modal-close" onclick="closeChemistryModal()">&times;</span>
+      </div>
+
+      <div class="chemistry-modal-body">
+        
+        <!-- LEFT SIDEBAR: SELECTOR & DETAILS -->
+        <div class="chem-sidebar">
+          <div class="chem-sidebar-title">SELECT CHEMISTRY</div>
+          <div class="chem-options-list">
+            <button class="chem-option-btn active" id="btn-lifepo4" onclick="previewChemistry('lifepo4')">Lithium Iron Phosphate</button>
+            <button class="chem-option-btn" id="btn-nmc" onclick="previewChemistry('nmc')">Lithium-Ion NMC/LCO</button>
+            <button class="chem-option-btn" id="btn-lead" onclick="previewChemistry('lead')">Flooded Lead-Acid</button>
+            <button class="chem-option-btn" id="btn-agm" onclick="previewChemistry('agm')">AGM Sealed Lead-Acid</button>
+            <button class="chem-option-btn" id="btn-gel" onclick="previewChemistry('gel')">GEL Sealed Lead-Acid</button>
+            <button class="chem-option-btn chem-add-custom" onclick="showCustomProfileForm()">+ Add Custom Profile</button>
+          </div>
+
+          <div class="chem-details-box" id="chemDetailsBox">
+            <h4 id="chemDetailTitle">Lithium Iron Phosphate (2-Stage CC/CV)</h4>
+            <p><strong>Characteristics:</strong> <span id="chemCharacteristics">--</span></p>
+            <p><strong>Key Phase Markers (Per-Cell):</strong></p>
+            <ul id="chemPhaseMarkers">
+              <!-- Markers populated dynamically -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- RIGHT MAIN AREA: CHARGING CURVE GRAPH OR CUSTOM FORM -->
+        <div class="chem-main-area">
+          
+          <!-- GRAPH VIEW -->
+          <div id="chemGraphView" style="display: flex; flex-direction: column; height: 100%;">
+            <div class="chem-graph-header">
+              <h3 id="chemGraphTitle">Lithium Iron Phosphate (2-Stage CC/CV) - Cell Charging Curve</h3>
+            </div>
+            
+            <div class="chem-graph-wrapper">
+              <canvas id="chemModalChart"></canvas>
+            </div>
+
+            <div class="chem-modal-actions">
+              <button class="chem-cancel-btn" onclick="closeChemistryModal()">Cancel</button>
+              <button class="chem-apply-btn" id="chemApplyBtn" onclick="applyChemistrySelection()">
+                SELECT & APPLY THIS PROFILE
+              </button>
+            </div>
+          </div>
+
+          <!-- CUSTOM PROFILE FORM VIEW -->
+          <div id="chemCustomForm" class="chem-custom-form-container" style="display: none;">
+            <h3 id="customFormTitle">Create Custom Chemistry Profile</h3>
+            <div class="custom-form-grid">
+              <div class="form-group">
+                <label>Profile Short Name</label>
+                <input type="text" id="custName" placeholder="e.g. LTO (Lithium Titanate)">
+              </div>
+              <div class="form-group">
+                <label>Charge Algorithm / Profile Type</label>
+                <select id="custType" onchange="toggleCustomFormFields()">
+                  <option value="cccv">2-Stage CC/CV (Li-Ion / LiFePO4 / LTO)</option>
+                  <option value="3stage">3-Stage Bulk/Abs/Float (Lead / AGM / VRLA)</option>
+                </select>
+              </div>
+              <div class="form-group full-width">
+                <label>Full Description Title</label>
+                <input type="text" id="custFullName" placeholder="e.g. LTO 2.4V Cell (CC/CV Profile)">
+              </div>
+              <div class="form-group full-width">
+                <label>Characteristics / Notes</label>
+                <input type="text" id="custChars" placeholder="e.g. Rapid charge, long cycle life, high rate capability.">
+              </div>
+              
+              <div class="form-group">
+                <label>Start / Min Voltage (V/cell)</label>
+                <input type="number" step="0.01" id="custVMin" value="1.80">
+              </div>
+              <div class="form-group">
+                <label>Nominal Voltage (V/cell)</label>
+                <input type="number" step="0.01" id="custVNom" value="2.30">
+              </div>
+              <div class="form-group">
+                <label>Max Absorption Voltage (V/cell)</label>
+                <input type="number" step="0.01" id="custVMax" value="2.80">
+              </div>
+              <div class="form-group" id="custVFloatGroup" style="display: none;">
+                <label>Float Voltage (V/cell)</label>
+                <input type="number" step="0.01" id="custVFloat" value="2.25">
+              </div>
+              <div class="form-group">
+                <label>Max Charging Current (% of Max I)</label>
+                <input type="number" step="1" id="custIMax" value="100">
+              </div>
+            </div>
+
+            <div class="chem-modal-actions">
+              <button class="chem-cancel-btn" onclick="hideCustomProfileForm()">Cancel</button>
+              <button class="chem-apply-btn" onclick="saveCustomProfile()">SAVE & PLOT PROFILE</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
