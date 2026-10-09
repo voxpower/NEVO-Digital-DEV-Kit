@@ -1,0 +1,57 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Extras
+.metadata
+.browser
+outgoing
+
+#Vox
+.lmp
+.m51
+.omf
+.mk
+.__i
+.lst
+
+#Vox1
+build/
+FactoryBinary_checklist.txt
+tool_set_config.json
+AI Review/
+docs/superpowers/
+.vscode/
+.settings/
+.cproject
+.project
+sdkconfig.old
